@@ -9,11 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "enchilada": "0.13.0",
     "engine.io": "1.6.0",
     "engine.io-client": "1.6.0",
-    "engine.io-rooms": "^0.2.0",
-    "express": "^3.3.5",
-    "smoothie": "1.19.0"
+    "express": "^3.3.5"
   }
 }

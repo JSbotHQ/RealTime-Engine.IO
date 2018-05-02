@@ -10,13 +10,25 @@ server.on('connection', (socket) => {
 
     console.log(socket.id + `connected`);
 
-    socket.on('message', (data) => {
-        socket.send(data)
-    })
-
-    socket.on('close', () => {
+    //HANDLERS
+    let disconnect = () => {
         console.log(socket.id + `Disconnect`)
-    })
+    }
+
+    let sendMessage = (data) => {
+        socket.send(data)
+    }
+
+    //LISTENERS
+    /**
+     * send Message to client
+     */
+    socket.on('message', sendMessage)
+
+    /**
+     * Disconnected client
+     */
+    socket.on('close',disconnect )
 });
 
 http.listen(3000, () => {

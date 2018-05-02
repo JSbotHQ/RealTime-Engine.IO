@@ -81,6 +81,14 @@
 
         $('#messages').append($('<li>').text('ID:' + socket.id));
 
+        /**
+         * get message to server
+         * @param msg
+         */
+        const newMessage = (msg) => {
+            $('#messages').append($('<li>').text(msg));
+        };
+
         sendMessage = () => {
             let message = $('#m').val();
             socket.send(message);
@@ -88,9 +96,7 @@
             return false;
         }
 
-        socket.on('message', (msg) => {
-            $('#messages').append($('<li>').text(msg));
-        });
+        socket.on('message', newMessage)
 
     })
 </script>

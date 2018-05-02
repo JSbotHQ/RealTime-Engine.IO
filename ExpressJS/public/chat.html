@@ -3,16 +3,70 @@
 <head>
     <title>Socket.IO + Express.js - chat demo</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font: 13px Helvetica, Arial; }
-        form { padding: 3px; position: fixed; bottom: 0; width: 100%; }
-        form input { border: 1px solid #c5bfbf; padding: 10px; width: 60%; }
-        form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; margin-left: 3px}
-        #messages { list-style-type: none; margin: 0; padding: 0; float: left; width: 50% }
-        #messages li { padding: 5px 10px; }
-        #messages li:nth-child(odd) { background: #eee; }
-        #online { list-style-type: none; margin: 0; padding: 0; float: right; width: 20%; background: #eee; height: -webkit-fill-available; border-bottom: 1px solid grey }
-        #online li { right: 5px; display: block; padding: 3px; border-bottom: 1px solid white; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 13px Helvetica, Arial;
+        }
+
+        form {
+            padding: 3px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        form input {
+            border: 1px solid #c5bfbf;
+            padding: 10px;
+            width: 60%;
+        }
+
+        form button {
+            width: 9%;
+            background: rgb(130, 224, 255);
+            border: none;
+            padding: 10px;
+            margin-left: 3px
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            float: left;
+            width: 50%
+        }
+
+        #messages li {
+            padding: 5px 10px;
+        }
+
+        #messages li:nth-child(odd) {
+            background: #eee;
+        }
+
+        #online {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            float: right;
+            width: 20%;
+            background: #eee;
+            height: -webkit-fill-available;
+            border-bottom: 1px solid grey
+        }
+
+        #online li {
+            right: 5px;
+            display: block;
+            padding: 3px;
+            border-bottom: 1px solid white;
+        }
     </style>
 </head>
 <body>
@@ -20,19 +74,28 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="engine.io.js"></script>
 <script>
-    const socket = eio('ws://localhost:3000/'); // starts polling immediately like crazy
+    const socket = new eio.Socket('ws://localhost:3000'); // starts polling immediately like crazy
 
 
-    socket.on('open', function(clientsCount) {
+    socket.on('open', function () {
+        let id = socket.id
+        console.log(id)
+        socket.on('allOnlineFriends', (data) => {
+            console.log(data)
+            $('#online').empty()
+            Object.keys(data.data).forEach(function (key) {
+                $('#online').append('<li onclick="display($(this))">' + data.data[key] + '</li>');
+            });
+        })
 
-        console.log(clientsCount)
+
+        $('#messages').append($('<li>').text('ID:' + socket.id));
 
         sendMessage = () => {
             let message = $('#m').val();
-            socket.send(message, $('#Input').val());
+            socket.send(message);
             $('#m').val('');
             return false;
-
         }
 
         socket.on('message', (msg) => {
@@ -46,7 +109,9 @@
 <ul class="online" id="online"></ul>
 
 <form>
-     <input id="m" autocomplete="off" /><button type="button" onclick="sendMessage()">Send</button>
+    <input id="id" placeholder="socket id" autocomplete="off"/>
+    <input id="m" autocomplete="off"/>
+    <button type="button" onclick="sendMessage()">Send</button>
 </form>
 
 </body>

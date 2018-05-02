@@ -1,32 +1,39 @@
 const engine = require('engine.io');
-const express =  require('express')
-const app =express();
+const express = require('express')
+const app = express();
 const http = require('http').Server(app);
 const server = engine.attach(http);
 
 app.use(express.static(__dirname + '/public'));
 
-server.on('connection', function (socket) {
+server.on('connection', (socket) => {
 
-    console.log(socket.id+' connected');
+    console.log(socket.id + 'connected');
 
-    socket.on('message',(data)=>{
+    const getOnlineFriends = () => {
+
+        let data = Object.keys(socket.id)
+        server.emit('allOnlineFriends', {data})
+    }
+
+    socket.send(socket.id + 'connected')
+    socket.on('message', (data) => {
         console.log(data)
         socket.send(data)
     })
 
 });
 
-http.listen(3000, ()=>{
+http.listen(3000, () => {
     console.log('listening on *:3000');
 });
 
 // Routes for private chat(peer to peer)
-app.get('/chat', (req, res)=>{
+app.get('/chat', (req, res) => {
     res.sendfile('chat.html', {root: './public'});
 });
 
 // Route for group chat (room chat)
-app.get('/group', (req, res)=> {
+app.get('/group', (req, res) => {
     res.sendfile('group.html', {root: './public'});
 });

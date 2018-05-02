@@ -27,5 +27,8 @@
          socket.send(data)
      })
 
+  ii. room messaging
+   - It is not possible in engine.io.
+
 Note : Engine is meant to be bundled with frameworks. Socket.IO includes Engine, therefore serving two clients is not necessary.
        If you use Socket.IO, then review the example here: https://github.com/JSbotHQ/RealTime-Socket.IO

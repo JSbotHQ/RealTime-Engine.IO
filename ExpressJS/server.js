@@ -4,24 +4,19 @@ const app = express();
 const http = require('http').Server(app);
 const server = engine.attach(http);
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + `/public`));
 
 server.on('connection', (socket) => {
 
-    console.log(socket.id + 'connected');
+    console.log(socket.id + `connected`);
 
-    const getOnlineFriends = () => {
-
-        let data = Object.keys(socket.id)
-        server.emit('allOnlineFriends', {data})
-    }
-
-    socket.send(socket.id + 'connected')
     socket.on('message', (data) => {
-        console.log(data)
         socket.send(data)
     })
 
+    socket.on('close', () => {
+        console.log(socket.id + `Disconnect`)
+    })
 });
 
 http.listen(3000, () => {
@@ -33,7 +28,3 @@ app.get('/chat', (req, res) => {
     res.sendfile('chat.html', {root: './public'});
 });
 
-// Route for group chat (room chat)
-app.get('/group', (req, res) => {
-    res.sendfile('group.html', {root: './public'});
-});

@@ -78,16 +78,6 @@
 
 
     socket.on('open', function () {
-        let id = socket.id
-        console.log(id)
-        socket.on('allOnlineFriends', (data) => {
-            console.log(data)
-            $('#online').empty()
-            Object.keys(data.data).forEach(function (key) {
-                $('#online').append('<li onclick="display($(this))">' + data.data[key] + '</li>');
-            });
-        })
-
 
         $('#messages').append($('<li>').text('ID:' + socket.id));
 
@@ -106,10 +96,8 @@
 </script>
 
 <ul id="messages"></ul>
-<ul class="online" id="online"></ul>
 
 <form>
-    <input id="id" placeholder="socket id" autocomplete="off"/>
     <input id="m" autocomplete="off"/>
     <button type="button" onclick="sendMessage()">Send</button>
 </form>

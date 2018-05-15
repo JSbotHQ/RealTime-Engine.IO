@@ -32,7 +32,7 @@ server.on('connection', (socket) => {
 });
 
 http.listen(3000, () => {
-    console.log('listening on *:3000');
+    console.log('listening on *:4000');
 });
 
 // Routes for private chat(peer to peer)

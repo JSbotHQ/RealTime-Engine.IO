@@ -5,7 +5,7 @@
   - start the server by `npm start`.
 
   i. Client to Server messaging
-   - go to `http://localhost:3000/chat`.
+   - go to `http://localhost:4000/chat`.
 
   client code logic:
 
@@ -35,7 +35,7 @@
   - start the server by `npm start`.
 
   i. Client to Server messaging
-   - go to `http://localhost:3000/chat`.
+   - go to `http://localhost:4000/chat`.
 
   client code logic:
 
@@ -65,7 +65,7 @@
   - start the server by `npm start`.
 
   i. Client to Server messaging
-   - go to `http://localhost:3000/chat`.
+   - go to `http://localhost:4000/chat`.
 
   client code logic:
 

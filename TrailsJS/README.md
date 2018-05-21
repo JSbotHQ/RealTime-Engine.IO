@@ -1,13 +1,14 @@
 # RealTime-Engine.IO
 
-#3. TrailsJS
+### 3. TrailsJS
+
   - `cd TrailsJS`
   - start the server by `npm start`.
 
-  i. Client to Server messaging
+  #### i. Client to Server messaging
    - go to `http://localhost:4000/chat`.
 
-  client code logic:
+  ##### client code logic:
 
         socket.send(message)
 
@@ -15,13 +16,13 @@
             console.log(msg)
         });
 
-
-  server code logic:
+  ##### server code logic:
 
         socket.send(data)
         socket.on('message', (data) => {
             console.log(data)
         })
 
-  ii. room messaging
+  #### ii. room messaging
+
    - It is not possible in engine.io.

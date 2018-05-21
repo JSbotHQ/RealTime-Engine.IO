@@ -1,7 +1,7 @@
 # RealTime-Engine.IO
 
-#3. TrailsJS
-  - `cd TrailsJS`
+#2. HapiJS
+  - `cd HapiJS`
   - start the server by `npm start`.
 
   i. Client to Server messaging

@@ -1,7 +1,7 @@
 # RealTime-Engine.IO
 
-#3. TrailsJS
-  - `cd TrailsJS`
+#1. ExpressJS
+  - `cd ExpressJS`
   - start the server by `npm start`.
 
   i. Client to Server messaging

@@ -3,91 +3,17 @@
 #1. ExpressJS
   - `cd ExpressJS`
   - start the server by `npm start`.
+  - Go here for more Info: [README](https://github.com/JSbotHQ/RealTime-Engine.IO/tree/master/ExpressJS)
 
-  i. Client to Server messaging
-   - go to `http://localhost:4000/chat`.
-
-  client code logic:
-
-        sendMessage = () => {
-                   let message = $('#m').val();
-                   socket.send(message);
-                   $('#m').val('');
-                   return false;
-               }
-
-        socket.on('message', (msg) => {
-             $('#messages').append($('<li>').text(msg));
-        });
-
-
-  server code logic:
-
-     socket.on('message', (data) => {
-         socket.send(data)
-     })
-
-  ii. room messaging
-   - It is not possible in engine.io.
-
-#2. TrailsJS
-  - `cd TrailsJS`
-  - start the server by `npm start`.
-
-  i. Client to Server messaging
-   - go to `http://localhost:4000/chat`.
-
-  client code logic:
-
-         sendMessage = () => {
-                           let message = $('#m').val();
-                           socket.send(message);
-                           $('#m').val('');
-                           return false;
-                       }
-
-         socket.on('message', (msg) => {
-                     $('#messages').append($('<li>').text(msg));
-         });
-
-  server code logic:
-
-        socket.on('message', (data) => {
-                 socket.send(data)
-        })
-
-  ii. room messaging
-     - It is not possible in engine.io.
-
-
-#3. HapiJS
+#2. HapiJS
   - `cd HapiJS`
   - start the server by `npm start`.
+  - Go here for more Info: [README](https://github.com/JSbotHQ/RealTime-Engine.IO/tree/master/HapiJS)
 
-  i. Client to Server messaging
-   - go to `http://localhost:4000/chat`.
-
-  client code logic:
-
-         sendMessage = () => {
-                           let message = $('#m').val();
-                           socket.send(message);
-                           $('#m').val('');
-                           return false;
-                       }
-
-         socket.on('message', (msg) => {
-                     $('#messages').append($('<li>').text(msg));
-         });
-
-  server code logic:
-
-        socket.on('message', (data) => {
-                 socket.send(data)
-        })
-
-  ii. room messaging
-     - It is not possible in engine.io.
+#3. TrailsJS
+  - `cd TrailsJS`
+  - start the server by `npm start`.
+  - Go here for more Info: [README](https://github.com/JSbotHQ/RealTime-Engine.IO/tree/master/TrailsJS)
 
 Note : Engine is meant to be bundled with frameworks. Socket.IO includes Engine, therefore serving two clients is not necessary.
        If you use Socket.IO, then review the example here: https://github.com/JSbotHQ/RealTime-Socket.IO
